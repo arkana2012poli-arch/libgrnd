@@ -1,0 +1,137 @@
+-- reg
+
+POST /auth/guest HTTP/1.1
+x-session-id: f62a90d13bc8475e
+user-agent: GrandMobile
+store: apk
+version: 5901
+accept-encoding: gzip
+content-length: 80
+locale: ru
+host: api.cdngrand.com
+content-type: application/json
+platform: android
+
+{"packageId":"com.grand.cr","device":"d8053be729c61af4","application":"flutter"}
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sat, 1 Aug 2026 01:00:15 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 157
+Connection: keep-alive
+Keep-Alive: timeout=15
+X-Powered-By: Express
+RateLimit-Policy: 100;w=60
+RateLimit-Limit: 100
+RateLimit-Remaining: 99
+RateLimit-Reset: 55
+Access-Control-Allow-Origin: *
+
+{"token":"jwt token"}
+
+POST /register HTTP/1.1
+user-agent: GrandMobile
+x-session-id: f62a90d13bc8475e
+accept-encoding: gzip
+locale: ru
+authorization: Bearer jwt token
+content-type: application/json
+platform: android
+store: apk
+version: 5901
+content-length: 28
+host: api.cdngrand.com
+
+{"login":"585mddoabg25tit2"}
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sat, 1 Aug 2026 01:00:34 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 28
+Connection: keep-alive
+Keep-Alive: timeout=15
+X-Powered-By: Express
+RateLimit-Policy: 100;w=60
+RateLimit-Limit: 100
+RateLimit-Remaining: 99
+RateLimit-Reset: 54
+Access-Control-Allow-Origin: *
+
+{"login":"585mddoabg25tit2"}
+
+-- char reg
+
+POST /v2/character/register HTTP/1.1
+user-agent: GrandMobile
+x-session-id: f62a90d13bc8475e
+accept-encoding: gzip
+locale: ru
+authorization: Bearer jwt token
+content-type: application/json
+platform: android
+store: apk
+version: 5901
+content-length: 55
+host: api.cdngrand.com
+
+{"server":30,"name":"Lenya_Agutin","sex":0,"skin":2756}
+
+HTTP/1.1 201 Created
+Server: nginx
+Date: Sat, 1 Aug 2026 01:01:22 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 15
+Connection: keep-alive
+Keep-Alive: timeout=15
+X-Powered-By: Express
+RateLimit-Policy: 100;w=60
+RateLimit-Limit: 100
+RateLimit-Remaining: 99
+RateLimit-Reset: 40
+Access-Control-Allow-Origin: *
+
+{"status":true}
+
+--refresh
+
+back:
+
+POST /refreshtoken HTTP/1.1
+user-agent: GrandMobile
+x-session-id: f62a90d13bc8475e
+accept-encoding: gzip
+locale: ru
+content-type: application/json
+authorization: Bearer jwt token
+platform: android
+store: apk
+version: 5901
+content-length: 28
+host: api.cdngrand.com
+
+{"device":"d8053be729c61af4"}
+
+if answer 401:
+  POST /auth/guest HTTP/1.1
+  x-session-id: f62a90d13bc8475e
+  user-agent: GrandMobile
+  store: apk
+  version: 5901
+  accept-encoding: gzip
+  content-length: 80
+  locale: ru
+  host: api.cdngrand.com
+  content-type: application/json
+  platform: android
+
+  {"packageId":"com.grand.cr","device":"d8053be729c61af4","application":"flutter"}
+
+  take token from answer
+
+  goto back;
+
+take token from answer
+
+success
